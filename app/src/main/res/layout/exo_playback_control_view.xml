@@ -23,6 +23,13 @@
             android:id="@id/exo_pause"
             style="@style/ExoMediaButton.Pause" />
 
+        <ImageButton android:id="@+id/download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/exo_download_description"
+            android:background="@android:color/transparent"
+            style="@style/ExoMediaButton"/>
+
     
 
     </LinearLayout>
