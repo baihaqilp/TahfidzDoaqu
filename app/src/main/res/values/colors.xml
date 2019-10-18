@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#16B85F</color>
+    <color name="colorPrimaryDark">#31955E</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!--  Gradient Transition  -->
+    <color name="Green">#16B85F</color>
+    <color name="Deep_Green">#31955E</color>
+
+    <!--  Additional Color Pallet  -->
+    <color name="White">#FFFFFF</color>
+    <color name="Grey">#DDE4EF</color>
 </resources>
