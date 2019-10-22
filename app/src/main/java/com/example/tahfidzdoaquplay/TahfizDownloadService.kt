@@ -11,7 +11,7 @@ import com.google.android.exoplayer2.util.NotificationUtil;
 import com.google.android.exoplayer2.util.Util;
 import java.nio.channels.Channel
 
-open class TahfizDownloadService : DownloadService(1){
+internal class TahfizDownloadService : DownloadService(1){
 
     private val CHANNEL_ID:String = "download_channel"
     private val JOB_ID:Int = 1
@@ -22,18 +22,15 @@ open class TahfizDownloadService : DownloadService(1){
     private lateinit var notificationHelper: DownloadNotificationHelper
 
 
-    fun TahfizDownloadService() {
-
-    }
 
     fun OnCreate(){
         super.onCreate();
-        notificationHelper = DownloadNotificationHelper(this,CHANNEL_ID)
     }
 
 
     override fun getDownloadManager(): DownloadManager {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+
     }
 
     override fun getForegroundNotification(downloads: MutableList<Download>?): Notification {
