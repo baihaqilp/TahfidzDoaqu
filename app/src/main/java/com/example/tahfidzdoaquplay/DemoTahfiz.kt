@@ -21,5 +21,4 @@ class DemoTahfiz : Application(){
     private val downloadDirectory: File? = null
     private val downloadCache: Cache? = null
     private val downloadManager: DownloadManager? = null
-    private val downloadTracker: Downloa
 }
