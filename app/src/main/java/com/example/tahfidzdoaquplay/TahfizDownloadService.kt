@@ -1,15 +1,15 @@
 package com.example.tahfidzdoaquplay
 
+import android.R
 import android.app.Notification
 import com.google.android.exoplayer2.offline.Download
-import com.google.android.exoplayer2.offline.DownloadService
 import com.google.android.exoplayer2.offline.DownloadManager
-import com.google.android.exoplayer2.scheduler.PlatformScheduler;
-import com.google.android.exoplayer2.scheduler.Scheduler
-import com.google.android.exoplayer2.ui.DownloadNotificationHelper;
-import com.google.android.exoplayer2.util.NotificationUtil;
-import com.google.android.exoplayer2.util.Util;
-import java.nio.channels.Channel
+import com.google.android.exoplayer2.offline.DownloadService
+import com.google.android.exoplayer2.scheduler.PlatformScheduler
+import com.google.android.exoplayer2.ui.DownloadNotificationHelper
+import com.google.android.exoplayer2.util.NotificationUtil
+import com.google.android.exoplayer2.util.Util
+
 
 internal class TahfizDownloadService : DownloadService(1){
 
@@ -28,16 +28,37 @@ internal class TahfizDownloadService : DownloadService(1){
     }
 
 
-    override fun getDownloadManager(): DownloadManager {
-        TODO()
-
+    override fun getDownloadManager(): DownloadManager? {
+        return (application as DemoApplication).getDownloadManager()
     }
 
-    override fun getForegroundNotification(downloads: MutableList<Download>?): Notification {
-        TODO()
+    override fun getScheduler(): PlatformScheduler? {
+        return if (Util.SDK_INT >= 21) PlatformScheduler(this, JOB_ID) else null
     }
 
-    override fun getScheduler(): Scheduler? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getForegroundNotification(downloads: List<Download?>?): Notification? {
+        return notificationHelper.buildProgressNotification(
+            R.drawable.ic_d,  /* contentIntent= */null,  /* message= */null, downloads
+        )
+    }
+
+    override fun onDownloadChanged(download: Download) {
+        val notification: Notification
+        notification = if (download.state == Download.STATE_COMPLETED) {
+            notificationHelper.buildDownloadCompletedNotification(
+                R.drawable.ic_download_done,  /* contentIntent= */
+                null,
+                Util.fromUtf8Bytes(download.request.data)
+            )
+        } else if (download.state == Download.STATE_FAILED) {
+            notificationHelper.buildDownloadFailedNotification(
+                R.drawable.ic_download_done,  /* contentIntent= */
+                null,
+                Util.fromUtf8Bytes(download.request.data)
+            )
+        } else {
+            return
+        }
+        NotificationUtil.setNotification(this, nextNotificationId++, notification)
     }
 }

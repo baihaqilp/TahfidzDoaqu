@@ -52,6 +52,7 @@ dependencies {
 
     // full exoplayer library
     implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
+    implementation 'com.google.android.material:material:1.0.0'
     /*
         library modules
         implementation 'com.google.android.exoplayer:exoplayer-core:r2.X.X'
